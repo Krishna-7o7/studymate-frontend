@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>📚 StudyMate — Local PDF Q&A</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app">
+    <header>
+      <h1>📚 StudyMate — Animated Local PDF Q&A</h1>
+      <p class="lead">Upload PDFs, explore your study materials interactively, and get instant context-based insights.</p>
+    </header>
+
+    <div class="grid">
+      <div>
+        <div class="card">
+          <label>Upload PDFs</label>
+          <input id="fileInput" type="file" accept="application/pdf" multiple />
+          <hr class="divider">
+          <label>Chunk size (words)</label>
+          <input id="chunkSize" type="number" value="400" min="50" max="2000" />
+          <div class="buttons">
+            <button id="processBtn">⚙️ Extract & Index</button>
+            <button id="clearBtn">🧹 Clear</button>
+          </div>
+          <div class="meta" id="statsArea">No documents loaded.</div>
+          <label>Document Chunks</label>
+          <div class="list" id="chunksList"></div>
+        </div>
+
+        <div class="card">
+          <label>Backend URL (optional)</label>
+          <input id="backendUrl" type="text" placeholder="https://your-api.example/answer" />
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <div class="ask-bar">
+            <input id="question" placeholder="Ask something about your PDFs..." />
+            <button id="askBtn">🔍 Ask</button>
+          </div>
+          <div class="results">
+            <div class="meta">Retrieved contexts:</div>
+            <div id="retrieved"></div>
+            <hr class="divider">
+            <div class="meta">Generated answer:</div>
+            <div id="answer" class="context">No answer yet — ask a question.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="notice">💡 Tip: Connect your backend (Flask + Granite / Mistral) for accurate, grounded responses.</div>
+        </div>
+      </div>
+    </div>
+
+    <footer>✨ Designed with animations for StudyMate Hackathon — Frontend only demo ✨</footer>
+  </div>
+
+  <!-- PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
+  </script>
+
+  <!-- App logic -->
+  <script src="script.js"></script>
+</body>
+</html>
+
